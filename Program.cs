@@ -1,8 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿   Console.WriteLine("Let's play Rock-Paper-Scissors!");
+    // Type name;
+    // Type veryLongName = value;
+string[] availableSigns = {"rock", "paper", "scissors" };
 
-    Console.WriteLine("Let's play Rock-Paper-Scissors!");
  while(true)
  {
     // 1. First Player
@@ -11,13 +11,17 @@ using System.Runtime.CompilerServices;
     {
         Console.WriteLine("Provide sign, first player (or write 'quit' to end a game):");
         firstPlayerSign = Console.ReadLine();
-    } while (firstPlayerSign !="rock" && firstPlayerSign !="paper"&& firstPlayerSign!="scissors" && firstPlayerSign != "quit");
+    } while (!availableSigns.Contains(firstPlayerSign) && firstPlayerSign != "quit");
+    
+    // } while (firstPlayerSign !="rock" && firstPlayerSign !="paper"&& firstPlayerSign!="scissors" && firstPlayerSign != "quit");
+    
 
        if (firstPlayerSign == "quit")
         {
             break;
         }
-        //2. Second Player
+
+    //2. Second Player
     string? secondPlayerSign;
     do
     {
@@ -30,15 +34,19 @@ using System.Runtime.CompilerServices;
     {
         break;
     }
+
+    int secondPlayerSignIndex = Array.IndexOf(availableSigns, secondPlayerSign);
+    int winningWithSecondPlayerSignIndex = (secondPlayerSignIndex + 1) % availableSigns.Length;
+    string winningWithSecondPlayerSign = availableSigns[winningWithSecondPlayerSignIndex];
+
+
     //3. Draw
     if(firstPlayerSign == secondPlayerSign)
     {
         Console.WriteLine("It,s a draw!");
     }
 
-    else if((firstPlayerSign == "rock" && secondPlayerSign == "scissors" 
-        || firstPlayerSign == "scissors" && secondPlayerSign == "paper" 
-        ||firstPlayerSign == "paper" && secondPlayerSign == "rock"))
+    else if(firstPlayerSign == winningWithSecondPlayerSign)
     { 
         Console.WriteLine("First Player won!");
     }
