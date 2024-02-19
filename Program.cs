@@ -2,6 +2,8 @@
     // Type name;
     // Type veryLongName = value;
 string[] availableSigns = {"rock", "paper", "scissors" };
+const string endGameCommand = "quit";
+
 
  while(true)
  {
@@ -9,14 +11,14 @@ string[] availableSigns = {"rock", "paper", "scissors" };
     string? firstPlayerSign;
     do
     {
-        Console.WriteLine("Provide sign, first player (or write 'quit' to end a game):");
+        Console.WriteLine($"Provide sign, first player (or write '{endGameCommand}' to end a game):");
         firstPlayerSign = Console.ReadLine();
-    } while (!availableSigns.Contains(firstPlayerSign) && firstPlayerSign != "quit");
+    } while (!availableSigns.Contains(firstPlayerSign) && firstPlayerSign != endGameCommand);
     
-    // } while (firstPlayerSign !="rock" && firstPlayerSign !="paper"&& firstPlayerSign!="scissors" && firstPlayerSign != "quit");
+    // } while (firstPlayerSign !="rock" && firstPlayerSign !="paper"&& firstPlayerSign!="scissors" && firstPlayerSign != endGameCommand);
     
 
-       if (firstPlayerSign == "quit")
+       if (firstPlayerSign == endGameCommand)
         {
             break;
         }
@@ -25,12 +27,12 @@ string[] availableSigns = {"rock", "paper", "scissors" };
     string? secondPlayerSign;
     do
     {
-    Console.WriteLine ("Provide sign, second player (or write 'quit' to end a game):");
+    Console.WriteLine ($"Provide sign, second player (or write '{endGameCommand}' to end a game):");
     secondPlayerSign = Console.ReadLine();
     } 
-    while (secondPlayerSign !="rock" && secondPlayerSign !="paper" && secondPlayerSign !="scissors" && secondPlayerSign !="quit" );
+    while (secondPlayerSign !="rock" && secondPlayerSign !="paper" && secondPlayerSign !="scissors" && secondPlayerSign !=endGameCommand );
 
-    if (secondPlayerSign == "quit")
+    if (secondPlayerSign == endGameCommand)
     {
         break;
     }
