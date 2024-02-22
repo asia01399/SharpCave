@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 
-Console.WriteLine("Let's play Rock-Paper-Scissors!");
+Console.WriteLine("Zagrajmy w porównywanie liczb od 1 do 3");
 
-string[] availableSigns = { "rock", "paper", "scissors" };
-const string endGameCommand = "quit";
+string[] availableSigns = { "1", "2", "3" };
+const string endGameCommand = "wyjdź";
 int firstPlayerPoints = 0;
 int secondPlayerPoints = 0;
 int expectedRoundNumber = 3;
@@ -14,12 +14,12 @@ bool keepPlaying = true;
  {
       for (int roundNumber = 1; roundNumber <= expectedRoundNumber; roundNumber++)
      {
-     Console.WriteLine($" Round {roundNumber}");
+     Console.WriteLine($" Runda {roundNumber}");
 
    string? firstPlayerSign;
    do
     {
-    Console.WriteLine($"Provide sign, first player (or write '{endGameCommand}' to end game):");
+    Console.WriteLine($"Podaj liczbę od 1 do 3 pierwszy graczu (lub wpisz'{endGameCommand}' by zamknąć grę):");
     firstPlayerSign = Console.ReadLine().ToLower();
     } while (!availableSigns.Contains(firstPlayerSign) && firstPlayerSign != endGameCommand);
 
@@ -32,8 +32,8 @@ bool keepPlaying = true;
     string? secondPlayerSign;
     do
     {
-    Console.WriteLine ($"Provide sign, second player (or write '{endGameCommand}' to end a game):");
-    secondPlayerSign = Console.ReadLine();
+    Console.WriteLine ($"Podaj liczbę od 1 do 3 drugi graczu (lub wpisz '{endGameCommand}' aby zakończyć grę):");
+    secondPlayerSign = Console.ReadLine().ToLower();
     } 
     while (!availableSigns.Contains(secondPlayerSign) && secondPlayerSign != endGameCommand);
 
@@ -43,45 +43,59 @@ bool keepPlaying = true;
         break;
     }
 
-    int secondPlayerSignIndex = Array.IndexOf(availableSigns, secondPlayerSign);
-    int winningWithSecondPlayerSignIndex = (secondPlayerSignIndex + 1) % availableSigns.Length;
-    string winningWithSecondPlayerSign = availableSigns[winningWithSecondPlayerSignIndex];
-
-
     if(firstPlayerSign == secondPlayerSign)
     {
-        Console.WriteLine("It,s a draw!");
+        Console.WriteLine("Remis!");
     }
 
-    else if(firstPlayerSign == winningWithSecondPlayerSign)
+    else if(firstPlayerSign == "3" && secondPlayerSign == "2")
     { 
-        Console.WriteLine($"First Player won: {firstPlayerSign} beats {secondPlayerSign}!");
+        Console.WriteLine($"Pierwszy gracz wygrywa: {firstPlayerSign} bije {secondPlayerSign}!");
         firstPlayerPoints += 1;
     }
-    
-    else
+    else if(firstPlayerSign =="3" && secondPlayerSign == "1")
+        { 
+        Console.WriteLine($"Pierwszy gracz wygrywa: {firstPlayerSign} bije {secondPlayerSign}!");
+        firstPlayerPoints += 1;
+    }
+    else if ( firstPlayerSign == "2" && secondPlayerSign == "1")
+          { 
+        Console.WriteLine($"Pierwszy gracz wygrywa: {firstPlayerSign} bije {secondPlayerSign}!");
+        firstPlayerPoints += 1;
+          }
+    else if (secondPlayerSign == "3" && firstPlayerSign == "1")
     {
-        Console.WriteLine($"Second Player won: {secondPlayerSign} beats {firstPlayerSign}!");
+        Console.WriteLine($"Drugi gracz wygrywa: {secondPlayerSign} bije {firstPlayerSign}!");
         secondPlayerPoints += 1;
     }
-    Console.WriteLine($"Current points: Player1: {firstPlayerPoints} Player2: {secondPlayerPoints}");
+else if (secondPlayerSign == "3" && secondPlayerSign == "2")
+    {
+        Console.WriteLine($"Drugi gracz wygrywa: {secondPlayerSign} bije {firstPlayerSign}!");
+        secondPlayerPoints += 1;
+    }
+    else if (secondPlayerSign == "2" && secondPlayerSign == "1")
+      {
+        Console.WriteLine($"Drugi gracz wygrywa: {secondPlayerSign} bije {firstPlayerSign}!");
+        secondPlayerPoints += 1;
+    }
+        Console.WriteLine($"Bieżący wynik: Gracz1: {firstPlayerPoints} Gracz2: {secondPlayerPoints}");
      }
 
     if (firstPlayerPoints > secondPlayerPoints)
     { 
-        Console.WriteLine($"First player crushed second player {firstPlayerPoints} to {secondPlayerPoints}!");
+        Console.WriteLine($"Gracz 1 wygrywa z graczem 2 z wynikiem: {firstPlayerPoints} do {secondPlayerPoints}!");
     }
     else if (secondPlayerPoints > firstPlayerPoints)
     {
-        Console.WriteLine ($"Second player crushed first player {secondPlayerPoints} to {firstPlayerPoints}!");
+        Console.WriteLine ($"Drugi gracz wygrywa z graczem 1 {secondPlayerPoints} do {firstPlayerPoints}!");
     }
     else
     {
-       Console.WriteLine ($"It's a total draw {firstPlayerPoints} to {secondPlayerPoints}");
+       Console.WriteLine ($"Gra kończy się remisem {firstPlayerPoints} do {secondPlayerPoints}");
 }
 
     firstPlayerPoints = 0;
     secondPlayerPoints = 0;
     }
-Console.WriteLine("Press Enter to close the game...");
+Console.WriteLine("Wciśnij Enter aby zamknąć grę...");
 Console.ReadLine();
