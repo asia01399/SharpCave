@@ -1,2 +1,2 @@
 # SharpCave
-Rock-Papper-Scissors
+Porównywanie numerów
